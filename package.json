@@ -1,0 +1,19 @@
+{
+  "name": "js-capstone",
+  "version": "1.0.0",
+  "description": "This is an app to collect the opinions of people about popular tv shows and movies",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wickathou/js-capstone.git"
+  },
+  "author": "danielmatama, wickathou",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wickathou/js-capstone/issues"
+  },
+  "homepage": "https://github.com/wickathou/js-capstone#readme"
+}
