@@ -9,7 +9,7 @@
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
     - [Usage](#usage)
-  - [👥 Author ](#-author-)
+  - [👥 Authors ](#-authors-)
   - [🔭 Future Features ](#-future-features-)
   - [🤝 Contributing ](#-contributing-)
   - [⭐️ Show your support ](#️-show-your-support-)
@@ -18,7 +18,7 @@
 
 # 📖 JS Capstone - Entertaiment Opinion <a name="about-project"></a>
 
-**JS Capstone - Entertaiment Opinion**, is a tool used to keep track of the scores achieved by people while allowing scores to be ranked. The app features custom API calls to the JS Capstone - Entertaiment Opinion and uses Webpack and Bootstrap.
+**JS Capstone - Entertaiment Opinion**, is a web application build using JavaScript that collects user's opinions about popular shows and movies. The app features the usage of the [TVmaze API](https://www.tvmaze.com/api).
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -26,7 +26,7 @@
 
 HTML | JS | GIT
 
-Webpack | Bootstrap
+Webpack | Bootstrap " Jest
 
 SCSS
 
@@ -55,7 +55,11 @@ Clone this repository to your desired folder:
 To run the project, use the command
 `npm run start`
 
-## 👥 Author <a name="author"></a>
+## 👥 Authors <a name="author"></a>
+
+👤 **Daniel Matama**
+
+- GitHub: [@danielmatama](https://github.com/danielmatama)
 
 👤 **Javier Hernandez**
 
@@ -65,8 +69,9 @@ To run the project, use the command
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **[Delete userscore entry]**
-- [ ] **[Update userscore information]**
+- [ ] **[Visual interface listing shows]**
+- [ ] **[Visual interface listing comments]**
+- [ ] **[API calls to the TVmaze API]**
 
 ## 🤝 Contributing <a name="contributing"></a>
 
