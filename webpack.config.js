@@ -38,7 +38,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Leaderboard API',
+      title: 'JS Capstone - Entertaiment Opinion',
       template: './src/index.html',
     }),
   ],
