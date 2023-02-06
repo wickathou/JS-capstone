@@ -60,12 +60,13 @@ To run the project, use the command
 👤 **Daniel Matama**
 
 - GitHub: [@danielmatama](https://github.com/danielmatama)
+- LinkedIn: [@daniel-matama-9190ba254](https://www.linkedin.com/in/daniel-matama-9190ba254/)
 
 👤 **Javier Hernandez**
 
 - GitHub: [@wickathou](https://github.com/wickathou)
 - LinkedIn: [@javierjhm](https://linkedin.com/in/javierjhm)
-- Instagram: [@digijavi](https://www.instagram.com/digijavi/)
+- Portfolio: [End Design Co.](https://works.enddesign.co/)
 
 ## 🔭 Future Features <a name="future-features"></a>
 
