@@ -1,5 +1,7 @@
 const invoUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/BDiHo1eWo7TvFu0NP10u/'
 
+// WORKING CODE 
+
 const postComment = async (showIdentifier, username, comment) => {
   const data = {
     'item_id': showIdentifier,
@@ -45,9 +47,6 @@ const postLike = async (showIdentifier) => {
 }
 
 
-
-// WORKING CODE 
-
 const getComments = async (showIdentifier) => {
   try {
     const res = await fetch(`${invoUrl}comments?item_id=${showIdentifier}`)
@@ -80,7 +79,7 @@ const getLikes = async (showIdentifier) => {
   }
 }
 
-getAllLikes()
+// getAllLikes()
 
 // getLikes('blade_runner')
 
