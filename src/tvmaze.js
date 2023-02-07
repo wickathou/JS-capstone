@@ -1,11 +1,5 @@
 const tvmazeUrl = 'https://api.tvmaze.com/'
 
-
-
-
-
-
-
 // WORKING CODE 
 
 const getShow = async (showIdentifier) => {

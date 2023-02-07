@@ -14,16 +14,13 @@ const postComment = async (showIdentifier, username, comment) => {
       },
       body: JSON.stringify(data),
     });
-    // const result = await res.json()
     console.log(res.status);
-    // console.log(res.json());
   } catch (error) {
     console.log(error);
     return error
   }
 }
 
-// postComment('blade_runner', 'Mike', 'Ok')
 
 const postLike = async (showIdentifier) => {
   const likes = await getLikes(showIdentifier) + 1
@@ -33,15 +30,13 @@ const postLike = async (showIdentifier) => {
   }
   console.log(data);
   try {
-    const res = await fetch(`${invoUrl}comments?item_id=${showIdentifier}`, {
+    const res = await fetch(`${invoUrl}likes/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     });
-    // const result = await res.json()
-    // console.log(result);
     console.log(res.statusText);
   } catch (error) {
     console.log(error);
@@ -85,9 +80,12 @@ const getLikes = async (showIdentifier) => {
   }
 }
 
-// getAllLikes()
+getAllLikes()
 
 // getLikes('blade_runner')
 
 // getComments('blade_runner')
-postLike('blade_runner')
+
+// postLike('blade_runner')
+
+// postComment('blade_runner', 'Mike', 'Ok')
