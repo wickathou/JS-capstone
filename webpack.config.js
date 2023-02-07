@@ -44,7 +44,6 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'JS Capstone - Entertaiment Opinion',
       template: './src/index.html',
     }),
   ],
