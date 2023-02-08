@@ -1,12 +1,30 @@
 const tvmazeUrl = 'https://api.tvmaze.com/'
+const summaryCleanRegex = /<[^>]*>/g
 
 // WORKING CODE 
+
+const showList = ['mandalorian', 'the last of us', 'house of the dragon', 'the boys', 'wednesday', 'true detective', 'succession', 'white lotus', 'rick and morty']
+
+const showInfo = async (showTitle) => {
+  const showDetails = await getShow(showTitle)
+  const image = await getImage(showDetails.id)
+  const allShowInfo = await {...showDetails, image}
+  console.log(allShowInfo);
+}
 
 const getShow = async (showIdentifier) => {
   try {
     const res = await fetch(`${tvmazeUrl}singlesearch/shows?q=${showIdentifier}`)
     const data = await res.json()
-    console.log(data.id);
+    // console.log(data);
+    // console.log(data.name);
+    // console.log(data.id);
+    let {id, name, summary} = data
+    summary = summary.replace(summaryCleanRegex, '')
+    const showDetails = {id, name, summary}
+    // console.log(showDetails);
+    // return data.id
+    return showDetails
   } catch (error) {
     console.log(error);
     return error
@@ -15,11 +33,13 @@ const getShow = async (showIdentifier) => {
 }
 
 const getImage = async (showId) => {
+  // console.log(showId);
   try {
     const res = await fetch(`${tvmazeUrl}shows/${showId}/images`)
     const data = await res.json()
-    const image = data.find(img => img.main === true)
-    console.log(image.resolutions.medium.url);
+    const image = await data.find(img => img.main === true)
+    // console.log(image);
+    // console.log(image.resolutions.medium.url);
     return image.resolutions.medium.url
   } catch (error) {
     console.log(error);
@@ -27,6 +47,17 @@ const getImage = async (showId) => {
   }
 }
 
-// getShow('mandalorian')
-// getShow('blade runner')
-getImage(38963)
+export {showInfo}
+
+// showList.forEach(async showTitle => {
+//     const id = await getShow(showTitle)
+//     const pic = await getImage(id)
+//     console.log(await [id, pic]);
+//   });
+showList.forEach(async showTitle => {
+  showInfo(showTitle)
+});
+  
+// console.log(getShow('mandalorian'));
+// showInfo('mandalorian')
+// getImage(15299)

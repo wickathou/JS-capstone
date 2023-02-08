@@ -25,7 +25,11 @@ const postComment = async (showIdentifier, username, comment) => {
 
 
 const postLike = async (showIdentifier) => {
-  const likes = await getLikes(showIdentifier) + 1
+  const likesApi = await getLikes(showIdentifier)
+  let likes = 0
+  if (likesApi) {
+    likes = likesApi + 1
+  }
   const data = {
     'item_id': showIdentifier,
     'likes': likes
@@ -48,12 +52,25 @@ const postLike = async (showIdentifier) => {
 
 
 const getComments = async (showIdentifier) => {
+  let allComments = {
+    comments: {},
+    amount: 0
+  }
   try {
     const res = await fetch(`${invoUrl}comments?item_id=${showIdentifier}`)
     const data = await res.json()
-    console.log(data);
+    if (res.status === 200) {
+      const amount = data.length;
+      allComments = {...data, amount}
+      console.log(allComments);
+      return allComments
+    } else {
+      console.log(allComments);
+      return allComments
+    }
   } catch (error) {
-    return error
+    console.log(error);
+    return false
   }
 }
 
@@ -61,7 +78,8 @@ const getAllLikes = async () => {
   try {
     const res = await fetch(`${invoUrl}likes/`)
     const data = await res.json()
-    console.log(data);
+    // console.log(data);
+    return data
   } catch (error) {
     return error
   }
@@ -69,22 +87,32 @@ const getAllLikes = async () => {
 
 const getLikes = async (showIdentifier) => {
   try {
-    const res = await fetch(`${invoUrl}likes/`)
-    const data = await res.json()
-    const movieLikes = data.find(movie => movie.item_id === `${showIdentifier}`)
-    console.log(movieLikes.likes);
+    const allLikes = await getAllLikes()
+    console.log(allLikes);
+    const movieLikes = await allLikes.find(movie => movie.item_id === `${showIdentifier}`)
+    if (await movieLikes) {
+      console.log(movieLikes);
+    } else {
+      console.log('Not found');
+    }
     return movieLikes.likes
   } catch (error) {
+    console.log(error);
     return error
   }
 }
 
+// export {getLikes, getComments}
+
 // getAllLikes()
 
 // getLikes('blade_runner')
+// getLikes(210)
+getLikes(216)
 
-// getComments('blade_runner')
+// getComments(216)
+// getComments(210)
 
-// postLike('blade_runner')
+// postLike(216)
 
-// postComment('blade_runner', 'Mike', 'Ok')
+// postComment(216, 'Jalke', 'Alright')

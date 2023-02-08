@@ -1,4 +1,4 @@
-class Shows {
+export default class Shows {
   constructor () {
     this.shows = []
   }
