@@ -1,12 +1,12 @@
-import {Show} from './showClass.js';
-import {showInfo} from './tvmaze.js';
-import {getUserInfo, postLike} from './involvement.js';
+import Show from './showClass.js';
+import { showInfo } from './tvmaze.js';
+import { getUserInfo, postLike } from './involvement.js';
 
 export default class Shows {
-  constructor (entryDom) {
-    this.shows = []
-    this.count = 0
-    this.entryDom = entryDom
+  constructor(entryDom) {
+    this.shows = [];
+    this.count = 0;
+    this.entryDom = entryDom;
   }
 
   #addToDom = (showElement) => {
@@ -14,23 +14,22 @@ export default class Shows {
   }
 
   generateInitial = (showList) => {
-    showList.forEach(async showTitle => {
-      const tvmazeShowInfo = await showInfo(showTitle)
-      const involvementShowInfo = await getUserInfo(tvmazeShowInfo.id)
-      const newShow = await new Show(tvmazeShowInfo.id, tvmazeShowInfo.name, tvmazeShowInfo.summary, tvmazeShowInfo.image,involvementShowInfo.likes, involvementShowInfo.comments)
-      this.shows.push(await newShow)
-      this.count = await this.shows.length
-      this.#addToDom(this.showEntryDom(newShow))
+    showList.forEach(async (showTitle) => {
+      const s = await showInfo(showTitle);
+      const u = await getUserInfo(s.id);
+      const newShow = await new Show(s.id, s.name, s.summary, s.image, u.likes, u.comments);
+      this.shows.push(await newShow);
+      this.count = await this.shows.length;
+      this.#addToDom(this.showEntryDom(newShow));
     });
   }
 
   addLikes = (id, div) => {
-    const likeBtn = div.querySelector(`#like-${id}`)
-    const likeCount = div.querySelector(`#likes-count-${id}`)
-    likeBtn.addEventListener('click',async () => {
-      console.log(`like-${id} clicked`);
-      likeCount.textContent = await postLike(id)
-    })
+    const likeBtn = div.querySelector(`#like-${id}`);
+    const likeCount = div.querySelector(`#likes-count-${id}`);
+    likeBtn.addEventListener('click', async () => {
+      likeCount.textContent = await postLike(id);
+    });
   }
 
   showEntryDom = (show) => {
@@ -62,11 +61,7 @@ export default class Shows {
           </div>
         </div>
       </div>`;
-    this.addLikes(show.id, div)
+    this.addLikes(show.id, div);
     return div;
   }
 }
-
-// const showTop = new Shows()
-
-// showTop.generateInitial(showList)
