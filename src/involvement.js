@@ -1,90 +1,99 @@
-const invoUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/BDiHo1eWo7TvFu0NP10u/'
+const invoUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/BDiHo1eWo7TvFu0NP10u/';
 
-// WORKING CODE 
-
-const postComment = async (showIdentifier, username, comment) => {
-  const data = {
-    'item_id': showIdentifier,
-    'username': username,
-    'comment': comment
-  }
-  try {
-    const res = await fetch(`${invoUrl}comments?item_id=${showIdentifier}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-    console.log(res.status);
-  } catch (error) {
-    console.log(error);
-    return error
-  }
-}
-
-
-const postLike = async (showIdentifier) => {
-  const likes = await getLikes(showIdentifier) + 1
-  const data = {
-    'item_id': showIdentifier,
-    'likes': likes
-  }
-  console.log(data);
-  try {
-    const res = await fetch(`${invoUrl}likes/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-    console.log(res.statusText);
-  } catch (error) {
-    console.log(error);
-    return error
-  }
-}
-
+// WORKING CODE
 
 const getComments = async (showIdentifier) => {
   try {
-    const res = await fetch(`${invoUrl}comments?item_id=${showIdentifier}`)
-    const data = await res.json()
-    console.log(data);
+    let allComments = {
+      comments: {},
+      amount: 0,
+    };
+    const res = await fetch(`${invoUrl}comments?item_id=${showIdentifier}`);
+    const data = await res.json();
+    if (res.status === 200) {
+      const amount = data.length;
+      allComments = { ...data, amount };
+      return allComments;
+    }
+    return allComments;
   } catch (error) {
-    return error
+    return false;
   }
-}
+};
 
 const getAllLikes = async () => {
   try {
-    const res = await fetch(`${invoUrl}likes/`)
-    const data = await res.json()
-    console.log(data);
+    const res = await fetch(`${invoUrl}likes/`);
+    const data = await res.json();
+    return data;
   } catch (error) {
-    return error
+    return error;
   }
-}
+};
 
 const getLikes = async (showIdentifier) => {
   try {
-    const res = await fetch(`${invoUrl}likes/`)
-    const data = await res.json()
-    const movieLikes = data.find(movie => movie.item_id === `${showIdentifier}`)
-    console.log(movieLikes.likes);
-    return movieLikes.likes
+    const allLikes = await getAllLikes();
+    const showLikes = await allLikes.find((show) => show.item_id === showIdentifier);
+    if (await showLikes) {
+      return showLikes.likes;
+    }
+    return 0;
   } catch (error) {
-    return error
+    return error;
   }
-}
+};
 
-// getAllLikes()
+const getUserInfo = async (showIdentifier) => {
+  const showLikes = await getLikes(showIdentifier);
+  const showComments = await getComments(showIdentifier);
+  const data = {
+    likes: showLikes,
+    comments: showComments.amount,
+  };
+  return data;
+};
 
-// getLikes('blade_runner')
+const postComment = async (showIdentifier, username, comment) => {
+  const data = {
+    item_id: showIdentifier,
+    username,
+    comment,
+  };
+  try {
+    await fetch(`${invoUrl}comments?item_id=${showIdentifier}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
 
-// getComments('blade_runner')
+const postLike = async (showIdentifier) => {
+  try {
+    const likes = await getLikes(showIdentifier) + 1;
+    const data = {
+      item_id: showIdentifier,
+      likes,
+    };
+    await fetch(`${invoUrl}likes/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    return likes;
+  } catch (error) {
+    return error;
+  }
+};
 
-// postLike('blade_runner')
-
-// postComment('blade_runner', 'Mike', 'Ok')
+export {
+  getLikes, getComments, getUserInfo, postComment, postLike,
+};

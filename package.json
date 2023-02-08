@@ -7,7 +7,10 @@
     "test": "jest --config jest.config.js",
     "build": "webpack",
     "start": "webpack serve --open",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "html-linter": "npx hint .",
+    "css-linter": "npx stylelint \"**/*.{css,scss}\"",
+    "js-linter": "npx eslint ."
   },
   "repository": {
     "type": "git",
@@ -49,6 +52,7 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.3.0",
     "bootstrap": "^5.2.3",
     "gh-pages": "^5.0.0"
   }

@@ -1,7 +1,12 @@
 import './style.scss';
+import Shows from './shows.js';
+import '@fortawesome/fontawesome-free/js/fontawesome.js';
+import '@fortawesome/fontawesome-free/js/solid.js';
 
-// const cardButton = document.querySelector('#card-button');
+const showList = ['mandalorian', 'the last of us', 'house of the dragon', 'the boys', 'wednesday', 'true detective', 'succession', 'white lotus', 'rick and morty'];
 
-// cardButton.addEventListener('click',()=>{
-//     console.log('card button clicked')
-// });
+const showListDom = document.getElementById('show-list');
+
+const showTop = new Shows(showListDom);
+
+showTop.generateInitial(showList);

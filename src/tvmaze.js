@@ -1,32 +1,38 @@
-const tvmazeUrl = 'https://api.tvmaze.com/'
+const tvmazeUrl = 'https://api.tvmaze.com/';
+const summaryCleanRegex = /<[^>]*>/g;
 
-// WORKING CODE 
+// WORKING CODE
 
 const getShow = async (showIdentifier) => {
   try {
-    const res = await fetch(`${tvmazeUrl}singlesearch/shows?q=${showIdentifier}`)
-    const data = await res.json()
-    console.log(data.id);
+    const res = await fetch(`${tvmazeUrl}singlesearch/shows?q=${showIdentifier}`);
+    const data = await res.json();
+    const { id } = data;
+    const { name } = data;
+    const summary = data.summary.replace(summaryCleanRegex, '');
+    const showDetails = { id, name, summary };
+    return showDetails;
   } catch (error) {
-    console.log(error);
-    return error
+    return error;
   }
-  // return data.id
-}
+};
 
 const getImage = async (showId) => {
   try {
-    const res = await fetch(`${tvmazeUrl}shows/${showId}/images`)
-    const data = await res.json()
-    const image = data.find(img => img.main === true)
-    console.log(image.resolutions.medium.url);
-    return image.resolutions.medium.url
+    const res = await fetch(`${tvmazeUrl}shows/${showId}/images`);
+    const data = await res.json();
+    const image = await data.find((img) => img.main === true);
+    return image.resolutions.medium.url;
   } catch (error) {
-    console.log(error);
-    return error
+    return error;
   }
-}
+};
 
-// getShow('mandalorian')
-// getShow('blade runner')
-getImage(38963)
+const showInfo = async (showTitle) => {
+  const showDetails = await getShow(showTitle);
+  const image = await getImage(showDetails.id);
+  const allShowInfo = await { ...showDetails, image };
+  return allShowInfo;
+};
+
+export { showInfo, getShow, getImage };
