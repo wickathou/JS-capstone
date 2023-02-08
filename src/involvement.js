@@ -25,17 +25,12 @@ const postComment = async (showIdentifier, username, comment) => {
 
 
 const postLike = async (showIdentifier) => {
-  const likesApi = await getLikes(showIdentifier)
-  let likes = 0
-  if (likesApi) {
-    likes = likesApi + 1
-  }
-  const data = {
-    'item_id': showIdentifier,
-    'likes': likes
-  }
-  console.log(data);
   try {
+    let likes = await getLikes(showIdentifier) + 1;
+    const data = {
+      'item_id': showIdentifier,
+      'likes': likes
+    }
     const res = await fetch(`${invoUrl}likes/`, {
       method: 'POST',
       headers: {
@@ -43,7 +38,7 @@ const postLike = async (showIdentifier) => {
       },
       body: JSON.stringify(data),
     });
-    console.log(res.statusText);
+    return likes
   } catch (error) {
     console.log(error);
     return error
@@ -52,20 +47,20 @@ const postLike = async (showIdentifier) => {
 
 
 const getComments = async (showIdentifier) => {
-  let allComments = {
-    comments: {},
-    amount: 0
-  }
   try {
+    let allComments = {
+      comments: {},
+      amount: 0
+    }
     const res = await fetch(`${invoUrl}comments?item_id=${showIdentifier}`)
     const data = await res.json()
     if (res.status === 200) {
       const amount = data.length;
       allComments = {...data, amount}
-      console.log(allComments);
+      // console.log(allComments);
       return allComments
     } else {
-      console.log(allComments);
+      // console.log(allComments);
       return allComments
     }
   } catch (error) {
@@ -88,31 +83,45 @@ const getAllLikes = async () => {
 const getLikes = async (showIdentifier) => {
   try {
     const allLikes = await getAllLikes()
-    console.log(allLikes);
-    const movieLikes = await allLikes.find(movie => movie.item_id === `${showIdentifier}`)
-    if (await movieLikes) {
-      console.log(movieLikes);
+    // console.log(allLikes);
+    const showLikes = await allLikes.find(show => show.item_id === showIdentifier)
+    if (await showLikes) {
+      // console.log(await showLikes.likes);
+      return showLikes.likes
     } else {
-      console.log('Not found');
+      // console.log('Not found');
+      return 0
     }
-    return movieLikes.likes
   } catch (error) {
     console.log(error);
     return error
   }
 }
 
-// export {getLikes, getComments}
+const getUserInfo = async (showIdentifier) => {
+  const showLikes = await getLikes(showIdentifier)
+  const showComments = await getComments(showIdentifier)
+  const data = {
+    likes: showLikes,
+    comments: showComments.amount
+  }
+  // console.log(data);
+  return data
+}
+
+export {getLikes, getComments, getUserInfo, postComment, postLike}
 
 // getAllLikes()
 
 // getLikes('blade_runner')
 // getLikes(210)
-getLikes(216)
+// getLikes(216)
+// getLikes(210)
+// getUserInfo('blade_runner')
+// getUserInfo(216)
+// getUserInfo(210)
 
 // getComments(216)
 // getComments(210)
-
-// postLike(216)
 
 // postComment(216, 'Jalke', 'Alright')

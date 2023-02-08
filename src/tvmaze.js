@@ -3,13 +3,14 @@ const summaryCleanRegex = /<[^>]*>/g
 
 // WORKING CODE 
 
-const showList = ['mandalorian', 'the last of us', 'house of the dragon', 'the boys', 'wednesday', 'true detective', 'succession', 'white lotus', 'rick and morty']
+
 
 const showInfo = async (showTitle) => {
   const showDetails = await getShow(showTitle)
   const image = await getImage(showDetails.id)
   const allShowInfo = await {...showDetails, image}
   console.log(allShowInfo);
+  return allShowInfo
 }
 
 const getShow = async (showIdentifier) => {
@@ -47,16 +48,16 @@ const getImage = async (showId) => {
   }
 }
 
-export {showInfo}
+export {showInfo, getShow, getImage}
 
 // showList.forEach(async showTitle => {
 //     const id = await getShow(showTitle)
 //     const pic = await getImage(id)
 //     console.log(await [id, pic]);
 //   });
-showList.forEach(async showTitle => {
-  showInfo(showTitle)
-});
+// showList.forEach(async showTitle => {
+//   showInfo(showTitle)
+// });
   
 // console.log(getShow('mandalorian'));
 // showInfo('mandalorian')
