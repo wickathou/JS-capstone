@@ -1,4 +1,4 @@
-import getShow from './tvmaze';
+import getShow from './tvmaze.js';
 
 class Show {
   constructor (title, likes = 0, comments = 0) {
