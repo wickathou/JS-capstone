@@ -45,7 +45,7 @@ export default class Shows {
           <p class="card-text">${show.summary.substring(0, 100)}...</p>
           <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center justify-content-between">
-              <a href="#" class="btn btn-primary">Check comments</a>
+              <a id="${show.id}" href="#" class="btn btn-primary">Check comments</a>
               <button id="like-${show.id}" class="ms-2 btn btn-primary text-light"><i class="fa-solid fa-thumbs-up"></i></button>
             </div>
             <div>
