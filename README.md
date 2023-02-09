@@ -26,7 +26,7 @@
 
 HTML | JS | GIT
 
-Webpack | Bootstrap " Jest
+Webpack | Bootstrap | Fontawesome | GH pages | Jest
 
 SCSS
 
@@ -70,9 +70,8 @@ To run the project, use the command
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **[Visual interface listing shows]**
-- [ ] **[Visual interface listing comments]**
-- [ ] **[API calls to the TVmaze API]**
+- [ ] **[Option to add new shows to the list]**
+- [ ] **[Option to sort shows by popularity and comment count]**
 
 ## 🤝 Contributing <a name="contributing"></a>
 
