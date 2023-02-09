@@ -1,3 +1,5 @@
+const invoUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/BDiHo1eWo7TvFu0NP10u/';
+
 const getAllLikes = async () => {
   try {
     const res = await fetch(`${invoUrl}likes/`);
@@ -15,7 +17,7 @@ const postLikeApi = async (data) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
-  })
-}
+  });
+};
 
-export {postLikeApi, getAllLikes}
+export { postLikeApi, getAllLikes };
