@@ -2,6 +2,22 @@ const invoUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstone
 
 // WORKING CODE
 
+import {postLikeApi, getAllLikes} from './likesApi';
+
+const postLike = async (showIdentifier) => {
+  try {
+    const likes = await getLikes(showIdentifier) + 1;
+    const data = {
+      item_id: showIdentifier,
+      likes,
+    };
+    postLikeApi(data)
+    return likes;
+  } catch (error) {
+    return error;
+  }
+};
+
 const getComments = async (showIdentifier) => {
   try {
     let allComments = {
@@ -18,16 +34,6 @@ const getComments = async (showIdentifier) => {
     return allComments;
   } catch (error) {
     return false;
-  }
-};
-
-const getAllLikes = async () => {
-  try {
-    const res = await fetch(`${invoUrl}likes/`);
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    return error;
   }
 };
 
@@ -74,26 +80,8 @@ const postComment = async (showIdentifier, username, comment) => {
   }
 };
 
-const postLike = async (showIdentifier) => {
-  try {
-    const likes = await getLikes(showIdentifier) + 1;
-    const data = {
-      item_id: showIdentifier,
-      likes,
-    };
-    await fetch(`${invoUrl}likes/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-    return likes;
-  } catch (error) {
-    return error;
-  }
-};
+
 
 export {
-  getLikes, getComments, getUserInfo, postComment, postLike,
+  getLikes, getUserInfo, postComment, postLike,
 };
