@@ -45,7 +45,7 @@ export default class Shows {
           <p class="card-text">${show.summary.substring(0, 100)}...</p>
           <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center justify-content-between">
-              <a id="${show.id}" href="#" class="btn btn-primary">Check comments</a>
+              <a id="comments-${show.id}" href="#" class="btn btn-primary">Check comments</a>
               <button id="like-${show.id}" class="ms-2 btn btn-primary text-light"><i class="fa-solid fa-thumbs-up"></i></button>
             </div>
             <div>
@@ -62,6 +62,11 @@ export default class Shows {
         </div>
       </div>`;
     this.addLikes(show.id, div);
+    const eventTest = div.querySelector(`#comments-${show.id}`)
+    eventTest.addEventListener('click', (e) => {
+      e.preventDefault()
+      console.log(`test-${show.id}-${show.title}`);
+    })
     return div;
   }
 }
