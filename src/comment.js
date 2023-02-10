@@ -1,4 +1,5 @@
 import apiKey from './apiKey.js';
+import { countComments } from './commentCounter.js';
 
 const commentUrl = (`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${apiKey}/comments/`);
 
@@ -24,8 +25,8 @@ const addComment = async (item1, name, message) => {
   });
 
   const commentsArray = await getComments(item1);
-  // countComments(commentsArray);
+  countComments(commentsArray);
   return commentsArray;
 };
 
-export { addComment, getComments };
+export { addComment, getComments, countComments };

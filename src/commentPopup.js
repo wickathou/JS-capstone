@@ -28,7 +28,7 @@ const commentPopup = async (popupComment, movie, num) => {
   document.body.appendChild(popupComment);
 };
 
-const commentClicked = (btns, movies) => {
+const commentClicked = (btns) => {
   btns.forEach((btn) => {
     btn.addEventListener('click', async () => {
       const popupComment = document.createElement('div');
@@ -43,11 +43,7 @@ const commentClicked = (btns, movies) => {
       let comments = await getComments(btn.id);
       const num = countComments(comments);
 
-      movies.forEach((movie) => {
-        if (movie.show.id === Number(btn.id)) {
-          commentPopup(popupComment, movie.show, num);
-        }
-      });
+      commentPopup(popupComment, btn.show, num);
 
       const closeBtn = document.querySelectorAll('.close-btn');
       closeBtn.forEach((closeBt) => {
@@ -84,3 +80,61 @@ const commentClicked = (btns, movies) => {
 };
 
 export default commentClicked;
+
+
+// const commentClicked = (btns, movies) => {
+//   btns.forEach((btn) => {
+//     btn.addEventListener('click', async () => {
+//       const popupComment = document.createElement('div');
+//       popupComment.classList.add('popup-window');
+
+//       if (popupComment.style.display === 'none') {
+//         popupComment.style.display = 'block';
+//       } else if (popupComment.style.display === 'block') {
+//         popupComment.style.display = 'none';
+//       }
+
+//       let comments = await getComments(btn.id);
+//       const num = countComments(comments);
+
+//       movies.forEach((movie) => {
+//         if (movie.show.id === Number(btn.id)) {
+//           commentPopup(popupComment, movie.show, num);
+//         }
+//       });
+
+//       const closeBtn = document.querySelectorAll('.close-btn');
+//       closeBtn.forEach((closeBt) => {
+//         closeBt.addEventListener('click', () => {
+//           popupComment.style.display = 'none';
+//         });
+//       });
+
+//       const commentDiv = document.querySelectorAll('.comments-div');
+//       comments.forEach((com) => {
+//         const p = document.createElement('p');
+//         p.innerHTML = `${com.creation_date} ${com.username}: ${com.comment}`;
+//         commentDiv.forEach((div) => {
+//           div.appendChild(p);
+//         });
+//       });
+
+//       const addCommentBtn = document.querySelectorAll('.add-comment');
+//       addCommentBtn.forEach((btn) => {
+//         btn.addEventListener('click', async () => {
+//           const commentInput = btn.previousElementSibling;
+//           const nameInput = commentInput.previousElementSibling;
+//           if (commentInput.value !== '' && nameInput.value !== '') {
+//             addComment(btn.id, nameInput.value, commentInput.value);
+//             nameInput.value = '';
+//             commentInput.value = '';
+//           }
+//           comments = await getComments(btn.id);
+//           window.document.location.reload();
+//         });
+//       });
+//     });
+//   });
+// };
+
+// export default commentClicked;

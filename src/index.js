@@ -2,6 +2,10 @@ import './style.scss';
 import Shows from './shows.js';
 import '@fortawesome/fontawesome-free/js/fontawesome.js';
 import '@fortawesome/fontawesome-free/js/solid.js';
+import commentClicked from './commentPopup.js';
+
+const btns = document.querySelectorAll('.btn-primary');
+commentClicked(btns);
 
 const showList = ['mandalorian', 'the last of us', 'house of the dragon', 'the boys', 'wednesday', 'true detective', 'succession', 'white lotus', 'rick and morty'];
 
