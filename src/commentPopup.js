@@ -38,9 +38,9 @@ const commentClicked = async (show) => {
         popupComment.style.display = 'none';
       }
 
-      // let comments = await getComments(show.id);
+      let comments = await getComments(show.id);
       
-      // const num = countComments(comments);
+      const num = countComments(comments);
 
       commentPopup(popupComment, show, 2);
 
@@ -50,29 +50,29 @@ const commentClicked = async (show) => {
         });
 
 
-      // const commentDiv = document.querySelectorAll('.comments-div');
-      // comments.forEach((com) => {
-      //   const p = document.createElement('p');
-      //   p.innerHTML = `${com.creation_date} ${com.username}: ${com.comment}`;
-      //   commentDiv.forEach((div) => {
-      //     div.appendChild(p);
-      //   });
-      // });
+      const commentDiv = document.querySelectorAll('.comments-div');
+      comments.forEach((com) => {
+        const p = document.createElement('p');
+        p.innerHTML = `${com.creation_date} ${com.username}: ${com.comment}`;
+        // commentDiv.forEach((div) => {
+          // div.appendChild(p);
+        // });
+      });
 
-      // const addCommentBtn = document.querySelectorAll('.add-comment');
-      // addCommentBtn.forEach((btn) => {
-      //   btn.addEventListener('click', async () => {
-      //     const commentInput = btn.previousElementSibling;
-      //     const nameInput = commentInput.previousElementSibling;
-      //     if (commentInput.value !== '' && nameInput.value !== '') {
-      //       addComment(show.id, nameInput.value, commentInput.value);
-      //       nameInput.value = '';
-      //       commentInput.value = '';
-      //     }
-      //     comments = await getComments(show.id);
-      //     window.document.location.reload();
-      //   });
-      // });
+      const addCommentBtn = document.querySelectorAll('.add-comment');
+      addCommentBtn.forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          const commentInput = btn.previousElementSibling;
+          const nameInput = commentInput.previousElementSibling;
+          if (commentInput.value !== '' && nameInput.value !== '') {
+            addComment(show.id, nameInput.value, commentInput.value);
+            nameInput.value = '';
+            commentInput.value = '';
+          }
+          comments = await getComments(show.id);
+          window.document.location.reload();
+        });
+      });
     // });
   // });
 };
