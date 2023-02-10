@@ -3,16 +3,12 @@ import { addComment, getComments, countComments } from './comment.js';
 const commentPopup = async (popupComment, movie, num) => {
   popupComment.innerHTML += `
     <div class="popup">
-    <span class="close-btn">X</span>
+    <span id="close-btn">X</span>
         <div class="popup-content">
             
-            <img src="${movie.image.medium}"/>
+            <img src="${movie.image}"/>
             <h1>${movie.name}</h1>
             <div class="popup-detail">
-            <p>Genre : ${movie.genres[0]}</p>
-            <p> Show ended: ${movie.ended} </p>
-            <p>Language : ${movie.language}</p>
-            <p>Duration: ${movie.runtime}</p>
             </div>
             <h4 class='count-display'>Comments ${num} </h4>
             <div class='comments-div' id="com-div">
@@ -28,11 +24,13 @@ const commentPopup = async (popupComment, movie, num) => {
   document.body.appendChild(popupComment);
 };
 
-const commentClicked = (btns) => {
-  btns.forEach((btn) => {
-    btn.addEventListener('click', async () => {
+const commentClicked = async (show) => {
+  console.log('show: ', show);
+  // btns.forEach((btn) => {
+  //   btn.addEventListener('click', async () => {
       const popupComment = document.createElement('div');
       popupComment.classList.add('popup-window');
+      // popupComment.style.display = 'none';
 
       if (popupComment.style.display === 'none') {
         popupComment.style.display = 'block';
@@ -40,43 +38,43 @@ const commentClicked = (btns) => {
         popupComment.style.display = 'none';
       }
 
-      let comments = await getComments(btn.id);
-      const num = countComments(comments);
+      // let comments = await getComments(show.id);
+      
+      // const num = countComments(comments);
 
-      commentPopup(popupComment, btn.show, num);
+      commentPopup(popupComment, show, 2);
 
-      const closeBtn = document.querySelectorAll('.close-btn');
-      closeBtn.forEach((closeBt) => {
-        closeBt.addEventListener('click', () => {
+      const closeBtn = document.getElementById('close-btn');
+        closeBtn.addEventListener('click', () => {
           popupComment.style.display = 'none';
         });
-      });
 
-      const commentDiv = document.querySelectorAll('.comments-div');
-      comments.forEach((com) => {
-        const p = document.createElement('p');
-        p.innerHTML = `${com.creation_date} ${com.username}: ${com.comment}`;
-        commentDiv.forEach((div) => {
-          div.appendChild(p);
-        });
-      });
 
-      const addCommentBtn = document.querySelectorAll('.add-comment');
-      addCommentBtn.forEach((btn) => {
-        btn.addEventListener('click', async () => {
-          const commentInput = btn.previousElementSibling;
-          const nameInput = commentInput.previousElementSibling;
-          if (commentInput.value !== '' && nameInput.value !== '') {
-            addComment(btn.id, nameInput.value, commentInput.value);
-            nameInput.value = '';
-            commentInput.value = '';
-          }
-          comments = await getComments(btn.id);
-          window.document.location.reload();
-        });
-      });
-    });
-  });
+      // const commentDiv = document.querySelectorAll('.comments-div');
+      // comments.forEach((com) => {
+      //   const p = document.createElement('p');
+      //   p.innerHTML = `${com.creation_date} ${com.username}: ${com.comment}`;
+      //   commentDiv.forEach((div) => {
+      //     div.appendChild(p);
+      //   });
+      // });
+
+      // const addCommentBtn = document.querySelectorAll('.add-comment');
+      // addCommentBtn.forEach((btn) => {
+      //   btn.addEventListener('click', async () => {
+      //     const commentInput = btn.previousElementSibling;
+      //     const nameInput = commentInput.previousElementSibling;
+      //     if (commentInput.value !== '' && nameInput.value !== '') {
+      //       addComment(show.id, nameInput.value, commentInput.value);
+      //       nameInput.value = '';
+      //       commentInput.value = '';
+      //     }
+      //     comments = await getComments(show.id);
+      //     window.document.location.reload();
+      //   });
+      // });
+    // });
+  // });
 };
 
 export default commentClicked;
