@@ -34,7 +34,7 @@ export default class Shows {
 
   showEntryDom = (show) => {
     const div = document.createElement('div');
-    div.classList = 'col-4';
+    div.classList = 'col-lg-4 col-md-6 col-12';
     div.innerHTML = `
       <div class="card p-3">
         <div class="card-img-top d-flex align-items-center justify-content-center">
@@ -43,7 +43,7 @@ export default class Shows {
         <div class="card-body">
           <h5 class="card-title">${show.title}<span class="ms-2 badge bg-primary rounded-pill">${show.id}</span></h5>
           <p class="card-text">${show.summary.substring(0, 100)}...</p>
-          <div class="d-flex align-items-center justify-content-between">
+          <div class="d-md-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center justify-content-between">
               <a id="comments-${show.id}" href="#" class="btn btn-primary">Check comments</a>
               <button id="like-${show.id}" class="ms-2 btn btn-primary text-light"><i class="fa-solid fa-thumbs-up"></i></button>
