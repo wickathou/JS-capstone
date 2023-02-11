@@ -29,13 +29,7 @@ module.exports = {
         }, {
           loader: 'sass-loader',
         }], 
-      }, {
-        test: /\.html$/i,
-        loader: "html-loader",
-      }, {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
-      }, {
+      },{
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|tests)/,
         use: ['babel-loader']
@@ -44,6 +38,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      title: 'JS Capstone - Entertaiment Opinion',
       template: './src/index.html',
     }),
   ],
