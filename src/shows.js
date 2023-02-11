@@ -1,6 +1,7 @@
 import Show from './showClass.js';
 import { showInfo } from './tvmaze.js';
 import { getUserInfo, postLike } from './involvement.js';
+import commentClicked from './commentPopup.js';
 
 export default class Shows {
   constructor(entryDom) {
@@ -62,11 +63,13 @@ export default class Shows {
         </div>
       </div>`;
     this.addLikes(show.id, div);
-    const eventTest = div.querySelector(`#comments-${show.id}`)
+    const eventTest = div.querySelector(`#comments-${show.id}`);
     eventTest.addEventListener('click', (e) => {
-      e.preventDefault()
-      console.log(`test-${show.id}-${show.title}`);
-    })
+      e.preventDefault();
+      // console.log(`test-${show.id}-${show.title}`);
+      commentClicked(show);
+    });
+
     return div;
   }
 }
