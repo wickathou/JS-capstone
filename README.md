@@ -55,6 +55,9 @@ Clone this repository to your desired folder:
 To run the project, use the command
 `npm run start`
 
+To run the tests, use the command
+`npm run test`
+
 ## 👥 Authors <a name="author"></a>
 
 👤 **Daniel Matama**
@@ -72,10 +75,7 @@ To run the project, use the command
 
 - [ ] **[Option to add new shows to the list]**
 - [ ] **[Option to sort shows by popularity and comment count]**
-<<<<<<< HEAD
 - [ ] **[Option to dislike and remove comments]**
-=======
->>>>>>> parent of 458e412 (Revert "Page comments popup")
 
 ## 🤝 Contributing <a name="contributing"></a>
 
