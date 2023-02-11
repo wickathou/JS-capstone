@@ -21,6 +21,7 @@
   "ignorePatterns": [
     "dist/",
     "build/",
-    "webpack.config.js"
+    "webpack.config.js",
+    "__mocks__"
   ]
 }
