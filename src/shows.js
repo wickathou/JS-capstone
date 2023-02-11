@@ -4,14 +4,19 @@ import { getUserInfo, postLike } from './involvement.js';
 import commentClicked from './commentPopup.js';
 
 export default class Shows {
-  constructor(entryDom) {
+  constructor(entryDom, showCountDom) {
     this.shows = [];
     this.count = 0;
     this.entryDom = entryDom;
+    this.showCountDom = showCountDom;
   }
 
   #addToDom = (showElement) => {
     this.entryDom.appendChild(showElement);
+  }
+
+  #showCount = () => {
+    this.showCountDom.textContent = `Shows listed (${this.shows.length})`;
   }
 
   generateInitial = (showList) => {
@@ -21,6 +26,7 @@ export default class Shows {
       const newShow = await new Show(s.id, s.name, s.summary, s.image, u.likes, u.comments);
       this.shows.push(await newShow);
       this.count = await this.shows.length;
+      this.#showCount();
       this.#addToDom(this.showEntryDom(newShow));
     });
   }
