@@ -9,7 +9,7 @@
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
     - [Usage](#usage)
-  - [👥 Authors ](#-authors-)
+  - [👥 Author ](#-author-)
   - [🔭 Future Features ](#-future-features-)
   - [🤝 Contributing ](#-contributing-)
   - [⭐️ Show your support ](#️-show-your-support-)
@@ -18,7 +18,7 @@
 
 # 📖 JS Capstone - Entertaiment Opinion <a name="about-project"></a>
 
-**JS Capstone - Entertaiment Opinion**, is a web application build using JavaScript that collects user's opinions about popular shows and movies. The app features the usage of the [TVmaze API](https://www.tvmaze.com/api).
+**JS Capstone - Entertaiment Opinion**, is a tool used to keep track of the scores achieved by people while allowing scores to be ranked. The app features custom API calls to the JS Capstone - Entertaiment Opinion and uses Webpack and Bootstrap.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -26,7 +26,7 @@
 
 HTML | JS | GIT
 
-Webpack | Bootstrap | Fontawesome | GH pages | Jest
+Webpack | Bootstrap
 
 SCSS
 
@@ -55,18 +55,13 @@ Clone this repository to your desired folder:
 To run the project, use the command
 `npm run start`
 
-## 👥 Authors <a name="author"></a>
-
-👤 **Daniel Matama**
-
-- GitHub: [@danielmatama](https://github.com/danielmatama)
-- LinkedIn: [@daniel-matama-9190ba254](https://www.linkedin.com/in/daniel-matama-9190ba254/)
+## 👥 Author <a name="author"></a>
 
 👤 **Javier Hernandez**
 
 - GitHub: [@wickathou](https://github.com/wickathou)
 - LinkedIn: [@javierjhm](https://linkedin.com/in/javierjhm)
-- Portfolio: [End Design Co.](https://works.enddesign.co/)
+- Instagram: [@digijavi](https://www.instagram.com/digijavi/)
 
 ## 🔭 Future Features <a name="future-features"></a>
 
