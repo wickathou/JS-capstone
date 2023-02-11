@@ -5,6 +5,9 @@ const commentUrl = (`https://us-central1-involvement-api.cloudfunctions.net/caps
 
 const getComments = async (showId) => {
   const comments = await fetch(`${commentUrl}?item_id=${showId}`);
+  if (comments.status === 400) {
+    return [];
+  }
   const commentsData = await comments.json();
   return commentsData;
 };
