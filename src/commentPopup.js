@@ -10,7 +10,7 @@ const commentPopup = async (popupComment, show, num) => {
             <h1>${show.title}</h1>
             <div class="popup-detail">
             </div>
-            <h4 class='count-display'>Comments ${num} </h4>
+            <h4 id='count-${show.id}' class='count-display'>Comments ${num} </h4>
             <div class='comments-div' id="com-div-${show.id}">
 
             </div>
@@ -53,13 +53,14 @@ const commentClicked = async (show) => {
     const commentInput = addCommentBtn.previousElementSibling;
     const nameInput = commentInput.previousElementSibling;
     if (commentInput.value !== '' && nameInput.value !== '') {
-      addComment(show.id, nameInput.value, commentInput.value);
+      await addComment(show.id, nameInput.value, commentInput.value);
       nameInput.value = '';
       commentInput.value = '';
     }
     comments = await getComments(show.id);
     commentDiv.innerHTML = '';
-    comments.forEach((com) => {
+    popupComment.querySelector(`#count-${show.id}`).textContent = `Comments ${comments.length}`
+    await comments.forEach((com) => {
       const p = document.createElement('p');
       p.innerHTML = `${com.creation_date} ${com.username}: ${com.comment}`;
       commentDiv.appendChild(p);
