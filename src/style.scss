@@ -9,6 +9,10 @@
     height: 100%;
     background-color: rgb(255, 255, 254);
   }
+
+  .image {
+    margin-top: 30px;
+  }
   
   .close-btn {
     font-size: xx-large;
@@ -16,6 +20,14 @@
     float: right;
     margin-right: 10px;
   }
+
+  .comment-btn {
+    padding: 10px;
+    margin-bottom: 30px;
+    font-size: 15px;
+    color: rebeccapurple;
+    border-radius: 10px;
+}
   
   .close-btn:hover {
     cursor: pointer;
