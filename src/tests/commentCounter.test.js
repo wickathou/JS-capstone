@@ -1,4 +1,4 @@
-import { countComments } from './commentCounter.js';
+import { countComments } from '../commentCounter.js';
 
 describe('countComments', () => {
   it('should return the correct comment count', () => {
