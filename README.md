@@ -72,6 +72,7 @@ To run the project, use the command
 
 - [ ] **[Option to add new shows to the list]**
 - [ ] **[Option to sort shows by popularity and comment count]**
+- [ ] **[Option to dislike and remove comments]**
 
 ## 🤝 Contributing <a name="contributing"></a>
 
