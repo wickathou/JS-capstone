@@ -1,23 +1,23 @@
 import { addComment, getComments, countComments } from './comment.js';
 
-const commentPopup = async (popupComment, movie, num) => {
+const commentPopup = async (popupComment, show, num) => {
   popupComment.innerHTML += `
     <div class="popup">
     <span class="close-btn">X</span>
         <div class="popup-content">
             
-            <img src="${movie.image}" class="image"/>
-            <h1>${movie.name}</h1>
+            <img src="${show.image}" class="image"/>
+            <h1>${show.title}</h1>
             <div class="popup-detail">
             </div>
             <h4 class='count-display'>Comments ${num} </h4>
-            <div class='comments-div' id="com-div-${movie.id}">
+            <div class='comments-div' id="com-div-${show.id}">
 
             </div>
             <h4>Add a comment</h4>
             <input type="text" placeholder="Your name" name="name" class="comment-input"/>
             <input type="textarea" placeholder="Your insights" name="comment" class="comment-input"/>
-            <button class="comment-btn add-comment" id="add-comment-${movie.id}">Comment</button>
+            <button class="comment-btn add-comment" id="add-comment-${show.id}">Comment</button>
         </div>
         </div>
     `;
