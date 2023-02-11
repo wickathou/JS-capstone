@@ -59,7 +59,7 @@ const commentClicked = async (show) => {
     }
     comments = await getComments(show.id);
     commentDiv.innerHTML = '';
-    popupComment.querySelector(`#count-${show.id}`).textContent = `Comments ${comments.length}`
+    popupComment.querySelector(`#count-${show.id}`).textContent = `Comments ${comments.length}`;
     await comments.forEach((com) => {
       const p = document.createElement('p');
       p.innerHTML = `${com.creation_date} ${com.username}: ${com.comment}`;
